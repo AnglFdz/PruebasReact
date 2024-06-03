@@ -13,7 +13,7 @@ const InputCustom = () => {
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
-            const fileName = file.name.split('.')[0];
+            const fileName = file.name.split('.').shift();
             const extension = file.name.split('.').pop().toLowerCase();
             if (allowedExtensions.includes(extension)) {
                 setFileName(fileName);
