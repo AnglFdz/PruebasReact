@@ -7,17 +7,16 @@ const InputCustom = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [fileUpload, setFileUpload] = useState(null);
 
-    // Lista de tipos de archivos permitidos
     const allowedExtensions = ['jpg', 'jpeg', 'png'];
 
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
-            console.log(typeof file)
+            const fileName = file.name.split('.')[0];
             const extension = file.name.split('.').pop().toLowerCase();
             if (allowedExtensions.includes(extension)) {
-                setFileName(file.name);
+                setFileName(fileName);
                 setFileUpload(file);
                 setFileExtension(extension);
                 setErrorMessage('');
@@ -44,6 +43,7 @@ const InputCustom = () => {
 
     return (
         <>
+            <h1>Subir archivo</h1>
             <div className="file-upload">
                 <input
                     type="file"
@@ -68,9 +68,10 @@ const InputCustom = () => {
                 )}
             </div>
 
-            <div>
+            <div style={{ marginTop: 30 }}>
                 <button onClick={UploadFile}>Subir archivo</button>
             </div>
+
         </>
     );
 };
